@@ -91,11 +91,22 @@ p {
 }
 
 .project::before {
-  content: "\f09b"; /* Código Unicode para el ícono de GitHub */
   font-family: "Font Awesome 5 Brands"; /* Especifica la fuente Font Awesome */
   margin-right: 8px; /* Espacio entre el ícono y el texto */
   font-size: 24px; /* Ajusta el tamaño del ícono */
   vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
+}
+
+.project a {
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  color: inherit; /* Mantiene el color del texto */
+}
+
+.project a:hover {
+  color: #0073e6; /* Cambia el color al pasar el mouse sobre el enlace */
+}
+.project i {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
 }
 .content {
   display: grid;
