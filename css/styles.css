@@ -82,6 +82,21 @@ header .search-bar .icon {
 }
 
 /* Content Styles */
+p {
+  text-align: justify;
+}
+.project {
+  font-size: 20px;
+  position: relative;
+}
+
+.project::before {
+  content: "\f09b"; /* Código Unicode para el ícono de GitHub */
+  font-family: "Font Awesome 5 Brands"; /* Especifica la fuente Font Awesome */
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  font-size: 24px; /* Ajusta el tamaño del ícono */
+  vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
+}
 .content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
