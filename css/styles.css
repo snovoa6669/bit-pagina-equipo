@@ -1,3 +1,4 @@
+/* General Reset */
 body {
   margin: 0;
   font-family: "Courier New", monospace;
@@ -5,6 +6,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -12,6 +14,17 @@ header {
   padding: 10px 20px;
   background-color: #333;
   color: white;
+  flex-wrap: wrap;
+}
+
+header .logo-title {
+  flex: 1 1 auto;
+}
+
+header .search-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
 }
 
 header .search-bar input {
@@ -27,19 +40,29 @@ header .search-bar .icon {
   cursor: pointer;
 }
 
+.menu-button {
+  display: none;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  flex: 0 1 auto;
+}
+
 /* Menu Styles */
 .menu {
   background-color: #007bff;
-  padding: 0;
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 .menu ul {
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .menu ul li {
@@ -58,77 +81,30 @@ header .search-bar .icon {
   background-color: #0056b3;
 }
 
-/* Responsive Menu Button */
-.menu-button {
-  display: none;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.menu-button.active + .menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  width: 100%;
+.menu ul.active {
+  display: block;
   background-color: #333;
-  z-index: 10;
 }
 
-/* Content Styles */
-p {
-  text-align: justify;
-}
-.project {
-  font-size: 20px;
-  position: relative;
-}
-
-.project::before {
-  font-family: "Font Awesome 5 Brands"; /* Especifica la fuente Font Awesome */
-  margin-right: 8px; /* Espacio entre el ícono y el texto */
-  font-size: 24px; /* Ajusta el tamaño del ícono */
-  vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
-}
-
-.project a {
-  text-decoration: none; /* Elimina el subrayado del enlace */
-  color: inherit; /* Mantiene el color del texto */
-}
-
-.project a:hover {
-  color: #0073e6; /* Cambia el color al pasar el mouse sobre el enlace */
-}
-.project i {
-  margin-right: 8px; /* Espacio entre el ícono y el texto */
-}
+/* Content */
 .content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
 
 .card {
   background-color: #333;
   color: white;
-  border: 1px solid #ddd;
   padding: 15px;
   border-radius: 5px;
   text-align: center;
 }
 
-.card.ads {
-  background-color: #555;
-  color: #fff;
-  font-style: italic;
-  grid-column: span 3;
+.card.publicidad {
+  grid-column: span 2; /* Ocupa dos columnas en pantallas más grandes */
+  width: 100%; /* Asegura que se ajuste al ancho total */
 }
 
 .avatar {
@@ -137,6 +113,7 @@ p {
   border-radius: 50%;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 10px;
@@ -145,79 +122,51 @@ footer {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  header {
-    flex-wrap: wrap;
-    text-align: center;
+
+/* Pantallas de 769px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-button {
+    display: none; /* Oculta el botón */
   }
 
-  .content {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .menu {
-    flex-wrap: wrap;
-    justify-content: space-around;
+  .menu ul {
+    display: flex; /* Mantiene visible la barra de menú */
   }
 }
 
+/* Pantallas de 375px a 768px */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: center;
+    text-align: center;
+  }
+
+  header .logo-title,
+  header .search-bar,
+  .menu-button {
+    margin-bottom: 10px;
   }
 
   .menu-button {
-    display: block;
+    display: block; /* Muestra el botón */
   }
 
-  .menu {
-    display: none;
+  .menu ul {
+    display: none; /* Oculta la barra de menú por defecto */
   }
 
-  .menu-button.active + .menu {
+  .menu ul.active {
     display: flex;
-  }
-
-  .content {
-    grid-template-columns: 1fr;
+    flex-direction: column; /* Muestra el menú como una lista vertical */
   }
 }
 
 @media (max-width: 375px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+  .content {
     padding: 10px;
-  }
-
-  .menu {
-    display: none;
   }
 
   .menu ul {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .menu ul li {
-    width: 100%;
-  }
-
-  .menu ul li a {
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-  }
-
-  .content {
-    grid-template-columns: 1fr;
-    padding: 10px;
-  }
-
-  .card {
     width: 100%;
   }
 }
