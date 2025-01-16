@@ -9,27 +9,31 @@ body {
 /* Header */
 header {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
   background-color: #333;
   color: white;
-  flex-wrap: wrap;
 }
 
 header .logo-title {
-  flex: 1 1 auto;
+  flex: 2 1 auto;
+  text-align: left;
 }
 
 header .search-bar {
-  flex: 1 1 auto;
+  flex: 3 1 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 0;
 }
 
 header .search-bar input {
   padding: 5px;
   margin-right: 10px;
+  width: 40%;
 }
 
 header .search-bar .icon {
@@ -38,16 +42,17 @@ header .search-bar .icon {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  display: block;
 }
 
 .menu-button {
+  flex: 0 1 auto;
   display: none;
   background-color: #007bff;
   color: white;
   padding: 10px;
   border: none;
   cursor: pointer;
-  flex: 0 1 auto;
 }
 
 /* Menu Styles */
@@ -61,7 +66,7 @@ header .search-bar .icon {
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: center;
+  justify-content: right;
   flex-wrap: wrap;
 }
 
@@ -93,7 +98,22 @@ header .search-bar .icon {
   gap: 20px;
   padding: 20px;
 }
+.project a {
+  color: white; /* Cambia este color al que desees */
+  text-decoration: none; /* Elimina el subrayado */
+}
 
+.project a:hover {
+  color: #ff4500; /* Este color se muestra cuando el enlace es hover */
+}
+.social-media a {
+  color: white; /* Cambia este color al que prefieras */
+  text-decoration: none; /* Elimina el subrayado */
+}
+
+.social-media a:hover {
+  color: #ff4500; /* Este será el color cuando el enlace se pase por encima */
+}
 .card {
   background-color: #333;
   color: white;
@@ -103,8 +123,8 @@ header .search-bar .icon {
 }
 
 .card.publicidad {
-  grid-column: span 2; /* Ocupa dos columnas en pantallas más grandes */
-  width: 100%; /* Asegura que se ajuste al ancho total */
+  grid-column: span 2;
+  width: 100%;
 }
 
 .avatar {
@@ -123,44 +143,71 @@ footer {
 
 /* Responsive Design */
 
-/* Pantallas de 769px a 1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Pantallas entre 675px y 1024px */
+@media (min-width: 675px) and (max-width: 1024px) {
   .menu-button {
-    display: none; /* Oculta el botón */
+    display: none;
   }
 
   .menu ul {
-    display: flex; /* Mantiene visible la barra de menú */
+    display: flex;
+  }
+
+  header .search-bar input {
+    display: block;
+  }
+
+  header .search-bar .icon {
+    display: none;
   }
 }
 
-/* Pantallas de 375px a 768px */
-@media (max-width: 768px) {
+/* Pantallas menores a 675px */
+@media (max-width: 674px) {
   header {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
   }
 
-  header .logo-title,
-  header .search-bar,
-  .menu-button {
+  header .logo-title {
+    order: 1;
+    width: 100%;
+    text-align: center;
     margin-bottom: 10px;
   }
 
-  .menu-button {
-    display: block; /* Muestra el botón */
+  header .search-bar {
+    order: 2;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  header .search-bar input {
+    display: none; /* Oculta el campo de entrada */
+  }
+
+  header .search-bar .icon {
+    display: block; /* Muestra solo el icono */
+  }
+
+  header .menu-button {
+    order: 3;
+    display: block;
+    padding: 5px 10px;
+    align-self: flex-end; /* Alinea el botón a la derecha */
   }
 
   .menu ul {
-    display: none; /* Oculta la barra de menú por defecto */
+    display: none;
   }
 
   .menu ul.active {
     display: flex;
-    flex-direction: column; /* Muestra el menú como una lista vertical */
+    flex-direction: column;
   }
 }
 
+/* Pantallas menores a 375px */
 @media (max-width: 375px) {
   .content {
     padding: 10px;
@@ -168,5 +215,9 @@ footer {
 
   .menu ul {
     width: 100%;
+  }
+
+  .card.publicidad {
+    grid-column: span 1;
   }
 }
